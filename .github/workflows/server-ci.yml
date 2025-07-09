@@ -54,6 +54,12 @@ jobs:
           java-version: ${{ matrix.JAVA_VERSION }}
           distribution: 'zulu'
 
+      - name: Install deps (Ubuntu)
+        if: ${{ startsWith(matrix.os, 'ubuntu') }}
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y liburing libaio-dev libjemalloc-dev
+
       - name: Cache Maven packages
         uses: actions/cache@v4
         with:
@@ -73,7 +79,7 @@ jobs:
 
       - name: Package
         run: |
-          mvn clean package -Dmaven.test.skip=true -ntp
+          mvn package -Dmaven.test.skip=true -ntp
           source $TRAVIS_DIR/install-rocksdb.sh
 
       - name: Prepare backend environment
