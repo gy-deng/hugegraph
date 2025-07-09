@@ -54,8 +54,7 @@ jobs:
           java-version: ${{ matrix.JAVA_VERSION }}
           distribution: 'zulu'
 
-      - name: Install deps (Ubuntu)
-        if: ${{ startsWith(matrix.os, 'ubuntu') }}
+      - name: Install deps
         run: |
           sudo apt-get update -y
           sudo apt-get install -y liburing libaio-dev libjemalloc-dev

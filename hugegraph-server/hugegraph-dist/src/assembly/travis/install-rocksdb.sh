@@ -54,16 +54,10 @@ function extract_so_with_jar() {
     fi
 }
 
-function install_dependency() {
-  # fix 24.04. see https://askubuntu.com/questions/1512196/libaio1-on-noble/1512197#1512197
-  sudo ln -s /usr/lib/x86_64-linux-gnu/libaio.so.1t64 /usr/lib/x86_64-linux-gnu/libaio.so.1
-}
-
 function preload_toplingdb() {
   local jar_file=$(find $LIB -name "rocksdbjni*.jar")
   local dest_dir=$LIBRARY
 
-  install_dependency
   extract_so_with_jar $jar_file $dest_dir
   export LD_LIBRARY_PATH=$dest_dir:$LD_LIBRARY_PATH
   ldd $dest_dir/librocksdbjni-linux64.so
