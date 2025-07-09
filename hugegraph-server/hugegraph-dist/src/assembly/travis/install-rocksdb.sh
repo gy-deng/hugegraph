@@ -61,6 +61,7 @@ function preload_toplingdb() {
   local dest_dir=$LIBRARY
 
   extract_so_with_jar $jar_file $dest_dir
+  ldd $dest_dir/librocksdbjni-linux64.so
   export LD_LIBRARY_PATH=$dest_dir:$LD_LIBRARY_PATH
   export LD_PRELOAD=libjemalloc.so:librocksdbjni-linux64.so
 }
