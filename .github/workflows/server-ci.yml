@@ -71,6 +71,11 @@ jobs:
         run: |
           mvn clean compile -U -Dmaven.javadoc.skip=true -ntp
 
+      - name: Package
+        run: |
+          mvn clean package -Dmaven.test.skip=true -ntp
+          source $TRAVIS_DIR/install-rocksdb.sh
+
       - name: Prepare backend environment
         run: |
           $TRAVIS_DIR/install-backend.sh $BACKEND && jps -l
