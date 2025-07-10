@@ -65,10 +65,8 @@ function preload_toplingdb() {
 
 VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
 SERVER_DIR=hugegraph-server/apache-hugegraph-server-incubating-$VERSION
-BIN=$SERVER_DIR/bin
 LIB=$SERVER_DIR/lib
-CONF=$SERVER_DIR/conf
-DB_CONF=$CONF/graphs/db_bench_community.yaml
+DB_CONF=$SERVER_DIR/conf/graphs/db_bench_community.yaml
 LIBRARY=$SERVER_DIR/library
 GITHUB="https://github.com"
 
