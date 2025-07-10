@@ -56,15 +56,13 @@ function extract_so_with_jar() {
 
 function preload_toplingdb() {
   local jar_file=$(find $LIB -name "rocksdbjni*.jar")
-  local dest_dir=$LIBRARY
+  local dest_dir="$(pwd)"/$LIBRARY
 
   extract_so_with_jar $jar_file $dest_dir
   export LD_LIBRARY_PATH=$dest_dir:$LD_LIBRARY_PATH
-  ldd $dest_dir/librocksdbjni-linux64.so
   export LD_PRELOAD=libjemalloc.so:librocksdbjni-linux64.so
 }
 
-TRAVIS_DIR=$(dirname $0)
 VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
 SERVER_DIR=hugegraph-server/apache-hugegraph-server-incubating-$VERSION
 BIN=$SERVER_DIR/bin
@@ -75,5 +73,3 @@ LIBRARY=$SERVER_DIR/library
 GITHUB="https://github.com"
 
 preload_toplingdb
-
-cp $DB_CONF .
