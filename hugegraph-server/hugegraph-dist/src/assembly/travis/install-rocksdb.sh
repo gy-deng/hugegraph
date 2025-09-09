@@ -114,7 +114,7 @@ function preload_toplingdb() {
     return 1
   fi
   
-  dest_dir="$TOP/library"
+  dest_dir="$(pwd)"/$LIBRARY
 
   # Check for Ubuntu 24.04+ and create a symlink for libaio if needed.
   # This is a workaround for software expecting the old libaio.so.1 name,
