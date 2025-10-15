@@ -162,8 +162,8 @@ function preload_toplingdb() {
             export LD_LIBRARY_PATH="$dest_dir${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         fi
 
-        if [ -f "$dest_dir/librocksdbjni-linux64.so" ] && [[ ":${LD_PRELOAD:-}:" != *":librocksdbjni-linux64.so:"* ]]; then
-            export LD_PRELOAD="librocksdbjni-linux64.so${LD_PRELOAD:+:$LD_PRELOAD}"
+        if [ -f "$dest_dir/librocksdbjni-linux64.so" ] && [[ ":${LD_PRELOAD:-}:" != *"librocksdbjni-linux64.so:"* ]]; then
+            export LD_PRELOAD="${LD_PRELOAD:+$LD_PRELOAD:}$dest_dir/librocksdbjni-linux64.so"
         fi
     else
         echo "Warn: LD paths skipped, directory '$dest_dir' does not exist." >&2
