@@ -171,7 +171,7 @@ function preload_toplingdb() {
     if command -v ldconfig >/dev/null 2>&1; then
         local jemalloc_found
         jemalloc_found=$(ldconfig -p 2>/dev/null | grep -F 'libjemalloc.so' || true)
-        if [ -n "$jemalloc_found" ] && [[ ":${LD_PRELOAD:-}:" != *":libjemalloc.so:"* ]]; then
+        if [ -n "$jemalloc_found" ] && [[ ":${LD_PRELOAD:-}:" != *"libjemalloc.so:"* ]]; then
             export LD_PRELOAD="libjemalloc.so${LD_PRELOAD:+:$LD_PRELOAD}"
         fi
     fi
